@@ -288,31 +288,27 @@ func isInterfaceImpl(pass *analysis.Pass, obj types.Object) bool {
 	// Also check well-known stdlib interfaces: error, fmt.Stringer, etc.
 	// by checking common method names.
 	wellKnownInterfaceMethods := map[string]bool{
-		"Error":       true, // error
-		"String":      true, // fmt.Stringer
-		"MarshalJSON": true, // json.Marshaler
-		"UnmarshalJSON": true, // json.Unmarshaler
-		"MarshalText":   true,
-		"UnmarshalText": true,
+		"Error":           true, // error
+		"String":          true, // fmt.Stringer
+		"MarshalJSON":     true, // json.Marshaler
+		"UnmarshalJSON":   true, // json.Unmarshaler
+		"MarshalText":     true,
+		"UnmarshalText":   true,
 		"MarshalBinary":   true,
 		"UnmarshalBinary": true,
-		"Read":        true, // io.Reader
-		"Write":       true, // io.Writer
-		"Close":       true, // io.Closer
-		"Len":         true, // sort.Interface
-		"Less":        true,
-		"Swap":        true,
-		"ServeHTTP":   true, // http.Handler
-		"Format":      true, // fmt.Formatter
-		"Scan":        true, // fmt.Scanner
-		"Value":       true, // driver.Valuer
-		"GoString":    true, // fmt.GoStringer
-		"WriteHeader": true, // http.ResponseWriter
+		"Read":            true, // io.Reader
+		"Write":           true, // io.Writer
+		"Close":           true, // io.Closer
+		"Len":             true, // sort.Interface
+		"Less":            true,
+		"Swap":            true,
+		"ServeHTTP":       true, // http.Handler
+		"Format":          true, // fmt.Formatter
+		"Scan":            true, // fmt.Scanner
+		"Value":           true, // driver.Valuer
+		"GoString":        true, // fmt.GoStringer
+		"WriteHeader":     true, // http.ResponseWriter
 	}
 
-	if wellKnownInterfaceMethods[methodName] {
-		return true
-	}
-
-	return false
+	return wellKnownInterfaceMethods[methodName]
 }
